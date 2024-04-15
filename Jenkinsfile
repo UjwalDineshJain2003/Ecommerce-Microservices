@@ -10,23 +10,10 @@ pipeline {
                 }
             }
         }
-        stage('User: Run Docker Compose') {
-            steps {
-                script {
-                    sh 'docker-compose -f User/docker-compose.yml up -d'
-                }
-            }
-        }
-        stage('User: Run Tests') {
-            steps {
-                script {
-                    sh 'docker-compose -f User/docker-compose.yml exec app python User/test_app.py'
-                }
-            }
-        }
         stage('User: Deploy to Kubernetes') {
             steps {
                 script {
+                    // Replace with Kubernetes deployment commands
                     sh 'kubectl apply -f User/mongo-pv.yaml'
                     sh 'kubectl apply -f User/mongo-pvc.yaml'
                     sh 'kubectl apply -f User/mongo-svc.yaml'
@@ -45,11 +32,6 @@ pipeline {
     }
 
     post {
-        always {
-            script {
-                sh 'docker-compose -f User/docker-compose.yml down'
-            }
-        }
         success {
             echo 'Deployment successful!'
         }
