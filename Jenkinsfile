@@ -6,7 +6,7 @@ pipeline {
         stage('User: Build Docker Image') {
             steps {
                 script {
-                    docker.build("user-docker-image:latest", "-f User/Dockerfile User")
+                    docker.build("user-docker-image:latest", "-f User/Dockerfile .")
                 }
             }
         }
