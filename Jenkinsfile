@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         // User Microservice
-        stage('User: Build Docker Image bruh') {
+        stage('User: Build Docker Image') {
             steps {
                 script {
                     docker.build("user-docker-image:latest", "-f User/Dockerfile User")
