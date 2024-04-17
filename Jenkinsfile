@@ -2,14 +2,40 @@ pipeline {
     agent any
 
     stages {
+        stage("Git Clone"){
+            git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/UjwalDineshJain2003/Ecommerce-Microservices.git'
+        }
+
+        stage('Initialize'){
+            steps{
+                script{
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
+
+        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'PASSWORD')]) {
+            sh 'docker login -u ujwaldineshjain2003 -p $PASSWORD'
+        }
+
         // User Microservice
         stage('User: Build Docker Image') {
             steps {
                 script {
-                    docker.build("user-docker-image:latest", "-f User/Dockerfile .")
+                    docker.build("ujwaldineshjain2003/user-app:latest", "-f User/Dockerfile .")
                 }
             }
         }
+
+        stage("User: Push Image to Docker Hub"){
+            steps{
+                script{
+                    sh 'docker push  ujwaldineshjain2003/user-app:latest'
+                }
+            }
+        }
+
         stage('User: Deploy to Kubernetes') {
             steps {
                 script {
