@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage("Git Clone"){
-            steps{
-                git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/UjwalDineshJain2003/Ecommerce-Microservices.git'
-            }
-        }
+        // stage("Git Clone"){
+        //     steps{
+        //         git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/UjwalDineshJain2003/Ecommerce-Microservices.git'
+        //     }
+        // }
 
         stage('Initialize'){
             steps{
