@@ -3,7 +3,9 @@ pipeline {
 
     stages {
         stage("Git Clone"){
-            git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/UjwalDineshJain2003/Ecommerce-Microservices.git'
+            steps{
+                git credentialsId: 'GIT_HUB_CREDENTIALS', url: 'https://github.com/UjwalDineshJain2003/Ecommerce-Microservices.git'
+            }
         }
 
         stage('Initialize'){
