@@ -17,13 +17,13 @@ pipeline {
             }
         }
 
-        stage('Docker Hub Login'){
-            steps{
-                withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'PASSWORD')]) {
-                    sh 'docker login -u ujwaldineshjain2003 -p $PASSWORD'
-                }
-            }
-        }
+        // stage('Docker Hub Login'){
+        //     steps{
+        //         withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'PASSWORD')]) {
+        //             sh 'docker login -u ujwaldineshjain2003 -p $PASSWORD'
+        //         }
+        //     }
+        // }
 
         // User Microservice
         stage('User: Build Docker Image') {
