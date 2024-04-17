@@ -29,7 +29,8 @@ pipeline {
         stage('User: Build Docker Image') {
             steps {
                 script {
-                    docker.build("ujwaldineshjain2003/user-app:latest", "-f User/Dockerfile .")
+                    // docker.build("ujwaldineshjain2003/user-app:latest", "-f User/Dockerfile .")
+                    sh "docker build -t ujwaldineshjain2003/user-app:latest -f User/Dockerfile ."
                 }
             }
         }
