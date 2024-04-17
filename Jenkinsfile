@@ -27,6 +27,10 @@ pipeline {
 
         // User Microservice
         stage('User: Build Docker Image') {
+            environment {
+                DOCKER_BUILDKIT = 1
+                DOCKER_BUILD_ARGS = "--memory 2g"
+            }
             steps {
                 script {
                     // docker.build("ujwaldineshjain2003/user-app:latest", "-f User/Dockerfile .")
